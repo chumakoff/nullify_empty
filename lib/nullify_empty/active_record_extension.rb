@@ -1,6 +1,8 @@
 module NullifyEmpty
   module ActiveRecordExtension
     def nullify_empty(*attr_names)
+      return unless connection.table_exists? table_name
+
       attr_names.each do |attr_name|
         original_type_klass = attribute_types[attr_name.to_s].class
 
