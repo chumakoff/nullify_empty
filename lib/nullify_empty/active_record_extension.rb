@@ -8,9 +8,12 @@ module NullifyEmpty
 
         new_type_klass =
           NULLIFY_EMPTY_TYPES.find { |_, klass| klass.superclass == original_type_klass }.first
+        next unless new_type_klass
 
         attribute attr_name, new_type_klass
       end
+    rescue
+      # ignore
     end
   end
 end
